@@ -16,6 +16,8 @@ const InviteCodePage = async ({
   const profile = await currentProfile();
 
   if (!profile) {
+    console.log("profile is:-",profile);
+    
     return redirectToSignIn();
   }
 

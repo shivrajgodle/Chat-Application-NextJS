@@ -26,6 +26,7 @@ import {
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { MemberRole } from "@prisma/client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const roleIconMap = {
     "GUEST" : null ,
@@ -35,11 +36,34 @@ const roleIconMap = {
 
 
 export const MembersModel = () => {
+    const router = useRouter();
     const { onOpen, isOpen, onClose, type, data } = useModel()
     const [loadingId , setLoadingId] = useState("");
 
     const isModelOpen = isOpen && type === "members";
     const { server } = data as { server: ServerWithMembersProfiles };
+
+    const onKick = async (memberId: string) => {
+        try {
+          setLoadingId(memberId);
+          const url = qs.stringifyUrl({
+            url: `/api/members/${memberId}`,
+            query: {
+              serverId: server?.id,
+            },
+          });
+    
+          const response = await axios.delete(url);
+    
+          router.refresh();
+          onOpen("members", { server: response.data });
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoadingId("");
+        }
+      }
+
 
     const onRoleChange = async (memberId: string , role:MemberRole) => {
         try{
@@ -48,12 +72,12 @@ export const MembersModel = () => {
                 url: `/api/members/${memberId}`,
                 query: {
                     serverId: server?.id,
-                    memberId,
                 }
             });
 
             const response = await axios.patch(url, {role});
-
+            router.refresh();
+            onOpen("members",{server:response.data});
         }catch(error){
             console.log(error);
         }finally{
@@ -100,12 +124,12 @@ export const MembersModel = () => {
                                                 </DropdownMenuSubTrigger>
                                                 <DropdownMenuPortal>
                                                     <DropdownMenuSubContent>
-                                                        <DropdownMenuItem>
+                                                        <DropdownMenuItem onClick={()=> onRoleChange(member.id,"GUEST")}>
                                                             <Shield className="h-4 w-4 mr-2" />
                                                             Guest
                                                             {member.role === "GUEST" && (<Check className="h-4 w-4 ml-auto"/>)}
                                                         </DropdownMenuItem>
-                                                        <DropdownMenuItem>
+                                                        <DropdownMenuItem onClick={()=> onRoleChange(member.id,"MODERATOR")}>
                                                             <ShieldCheck className="h-4 w-4 mr-2" />
                                                             Moderator
                                                             {member.role === "MODERATOR" && (<Check className="h-4 w-4 ml-auto"/>)}
@@ -115,7 +139,9 @@ export const MembersModel = () => {
 
                                             </DropdownMenuSub>
                                             <DropdownMenuSeparator />
-                                            <DropdownMenuItem>
+                                            <DropdownMenuItem
+                                            onClick={()=> onKick(member.id)}
+                                            >
                                                 <Gavel className="h-4 w-4 mr-2" />
                                                 Kick
                                             </DropdownMenuItem>
