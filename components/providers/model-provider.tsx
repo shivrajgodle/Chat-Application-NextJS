@@ -6,6 +6,8 @@ import { InviteModel } from "@/components/models/invite-model";
 import { EditServerModel } from "@/components/models/edit-server-model";
 import { MembersModel } from "@/components/models/members-model";
 import { CreateChannelModel } from "@/components/models/create-channel-model";
+import { LeaveServerModel } from "@/components/models/leave-server-model";
+import { DeleteServerModel } from "@/components/models/delete-server-model";
 
 export const ModelProvider = () => {
 
@@ -24,8 +26,10 @@ export const ModelProvider = () => {
         <CreateServerModel/>
         <InviteModel/>
         <EditServerModel/>
-        <MembersModel />
-        <CreateChannelModel />
+        <MembersModel/>
+        <CreateChannelModel/>
+        <LeaveServerModel/>
+        <DeleteServerModel/>
         </>
     )
 
