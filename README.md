@@ -1,9 +1,9 @@
+
 Create such folder structure. next js 13 has this kind of format for routing [[...sign-in]]. was facing issue to upload files so i have removed perticular format. kindly use below format for (auth).
 
 folder structure:->
 
-app -> (auth) -> (routes) -> sign-in -> [[...sign-in]] 
-app -> (auth) -> (routes) -> sign-up -> [[...sign-up]]
+app -> (auth) -> (routes) -> sign-in -> [[...sign-in]] app -> (auth) -> (routes) -> sign-up -> [[...sign-up]]
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
