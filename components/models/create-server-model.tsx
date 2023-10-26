@@ -27,7 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 
 const formSchema = z.object({
     name: z.string().min(1, { message: "Server name is required" }),
@@ -36,7 +36,7 @@ const formSchema = z.object({
 
 
 export const CreateServerModel = () => {
-    const { isOpen, onClose, type } = useModel()
+    const { isOpen, onClose, type } = useModal()
     const router = useRouter();
 
     const isModelOpen = isOpen && type === "createServer";

@@ -9,7 +9,7 @@ import {
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog"
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 import { Button } from "@/components/ui/button";
 
 import axios from "axios";
@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 
 
 export const DeleteChannelModel = () => {
-    const { isOpen, onClose, type , data } = useModel()
+    const { isOpen, onClose, type , data } = useModal()
    
     const router = useRouter()
    

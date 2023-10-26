@@ -27,7 +27,7 @@ import { ChannelType } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useParams, useRouter } from "next/navigation";
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 import {
     Select,
     SelectContent,
@@ -47,7 +47,7 @@ const formSchema = z.object({
 
 
 export const CreateChannelModel = () => {
-    const { isOpen, onClose, type, data } = useModel()
+    const { isOpen, onClose, type, data } = useModal()
     const router = useRouter();
     const params = useParams();
     

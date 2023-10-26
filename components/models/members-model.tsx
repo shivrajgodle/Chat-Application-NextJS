@@ -7,7 +7,7 @@ import {
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog"
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 import { ServerWithMembersProfiles } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
@@ -37,7 +37,7 @@ const roleIconMap = {
 
 export const MembersModel = () => {
     const router = useRouter();
-    const { onOpen, isOpen, onClose, type, data } = useModel()
+    const { onOpen, isOpen, onClose, type, data } = useModal()
     const [loadingId , setLoadingId] = useState("");
 
     const isModelOpen = isOpen && type === "members";

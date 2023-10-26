@@ -5,7 +5,7 @@ import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams,useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ActionTooltip } from "@/components/action-tooltip";
-import { ModelType, useModel } from "@/hooks/use-model-store";
+import { ModalType, useModal } from "@/hooks/use-model-store";
 import React from "react";
 
 interface ServerChannelProps {
@@ -22,7 +22,7 @@ const iconMap = {
 }
 
 export const ServerChannel = ({channel,server,role}:ServerChannelProps) => {
-    const {onOpen} = useModel();
+    const { onOpen } = useModal();
     const params = useParams();
     const router = useRouter();
 
@@ -32,7 +32,7 @@ export const ServerChannel = ({channel,server,role}:ServerChannelProps) => {
         router.push(`/servers/${params?.serverId}/channels/${channel.id}`)
     }
 
-    const onAction = (e: React.MouseEvent , action: ModelType) => {
+    const onAction = (e: React.MouseEvent , action: ModalType) => {
         e.stopPropagation();
         onOpen(action , {channel , server});
     }

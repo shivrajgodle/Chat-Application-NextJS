@@ -6,7 +6,7 @@ import {
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog"
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import axios from "axios";
 
 
 export const InviteModel = () => {
-    const { onOpen, isOpen, onClose, type , data } = useModel()
+    const { onOpen, isOpen, onClose, type , data } = useModal()
     const origin = useOrigin();
 
     const isModelOpen = isOpen && type === "invite";

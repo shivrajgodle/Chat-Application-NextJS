@@ -3,7 +3,7 @@ import { ServerWithMembersProfiles } from "@/types";
 import { MemberRole, Server } from "@prisma/client";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LogOut, PlusCircle, Settings, Trash, UserPlus, Users } from "lucide-react";
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 
 interface ServerHeaderProps {
     server: ServerWithMembersProfiles;
@@ -13,7 +13,8 @@ interface ServerHeaderProps {
 export const ServerHeader = ({
     server, role }: ServerHeaderProps) => {
 
-    const { onOpen } = useModel();
+    const { onOpen } = useModal();
+
 
     const isAdmin = role === MemberRole.ADMIN;
     const isModerator = isAdmin || role === MemberRole.MODERATOR;

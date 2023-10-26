@@ -15,6 +15,7 @@ import {
   FormItem,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useModal } from "@/hooks/use-model-store";
 
 
 interface ChatInputProps {
@@ -34,7 +35,7 @@ export const ChatInput = ({
   name,
   type,
 }: ChatInputProps) => {
-  //const { onOpen } = useModal();
+  const { onOpen } = useModal();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({

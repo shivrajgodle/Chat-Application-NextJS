@@ -27,7 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
-import { useModel } from "@/hooks/use-model-store";
+import { useModal } from "@/hooks/use-model-store";
 import { useEffect } from "react";
 
 const formSchema = z.object({
@@ -37,7 +37,7 @@ const formSchema = z.object({
 
 
 export const EditServerModel = () => {
-    const { isOpen, onClose, type, data } = useModel()
+    const { isOpen, onClose, type, data } = useModal()
     const router = useRouter();
 
     const isModelOpen = isOpen && type === "editServer";
